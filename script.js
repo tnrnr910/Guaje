@@ -25,13 +25,13 @@ const handleSearch = (event) => {
 // 영화 데이터 가져오기
 const fetchMovieData = async () => {
   const response = await fetch(
-    "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1&include_adult=false",
+    "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1",
     {
       method: "GET",
       headers: {
         accept: "application/json",
         Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1NThhODc2ZTY5NDA4NWY4YTA1MmQyNjc5MTRhY2RlMiIsInN1YiI6IjYxYzNjZjY5MzdiM2E5MDBjMzQ2YzYyYyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.pPkre3BdMQtujbkqtPmW7TC_022A-ZR2M_ZShzd_kDU",
+          "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwMWE0OTdjYTI1OTkxZTI3YWU2OGViZjIxOTQwYmJiYiIsInN1YiI6IjY0Nzg3N2VmY2Y0YjhiMDBlMmQ0NzBjMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.1JdctVcIfQzvY4W50qHQZn_BoHDPqN0eMG4u0819q_Y",
       },
     }
   );
