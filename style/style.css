@@ -35,6 +35,7 @@ header {
   border-radius: 5px;
   margin: 10px;
   padding: 10px;
+  cursor: pointer;
 }
 /* 영화 포스터 이미지 */
 .movie-card img {

@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../style/reset.css" />
+    <link rel="stylesheet" href="../style/subPage.css" />
+    <link href="../image/d_logo.png" rel="shortcut icon" type="image/x-icon" />
+    <title>서브 페이지</title>
+    <style>
+      /* 리뷰 content */
+
+      .review-textarea {
+        margin-top: 50px;
+      }
+      #nickName {
+        width: 150px;
+        height: 30px;
+        border-radius: 5px;
+        border: 2px solid #000;
+        margin-left: 15px;
+      }
+      #pwd {
+        width: 65px;
+        height: 30px;
+        border-radius: 5px;
+        border: 2px solid #000;
+      }
+      #review {
+        border: 2px solid #000;
+      }
+      .text-count {
+        color: gray;
+        padding: 0px 0px 0px 12px;
+        position: relative;
+        bottom: 30px;
+      }
+      .list-div {
+        position: absolute;
+        top: 70%;
+        left: 40%;
+        width: 500px;
+        height: 200px;
+      }
+
+      /* 모달창 */
+      button {
+        background-color: black;
+        color: white;
+        padding: 15px 25px;
+        border-radius: 10px;
+        cursor: pointer;
+      }
+      .modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1;
+      }
+      .md_overlay {
+        background-color: rgba(0, 0, 0, 0.6);
+        width: 100%;
+        height: 100%;
+        position: absolute;
+      }
+      .md_content {
+        position: relative;
+        padding: 70px 100px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 6px 6px rgba(0, 0, 0, 0.2);
+        background-color: #990000;
+        border: 2px solid black;
+      }
+      .md_close_btn {
+        padding: 10px 15px;
+        float: right;
+      }
+      .md_close_btn:hover {
+        cursor: pointer;
+      }
+      .hidden {
+        display: none;
+      }
+      .review-box button {
+        float: right;
+      }
+      /* #open-modal{
+        position: relative;
+        left: 90%;
+        top: 800px;
+        background-color: #990000;
+      } */
+
+      /* 댓글 css */
+      ul,
+      li {
+        list-style: none;
+      }
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      .board_wrap {
+        width: 1000px;
+        margin: 100px auto;
+      }
+      .board_title {
+        margin-bottom: 30px;
+      }
+
+      .board_title strong {
+        font-size: 30px;
+      }
+      .board_title p {
+        margin-top: 10px;
+        font-size: 15px;
+      }
+      .bt_wrap {
+        margin-top: 30px;
+        text-align: center;
+        font-size: 0;
+        display: flex;
+        justify-content:space-between
+      }
+      .bt_wrap a {
+        display: inline-block;
+        min-width: 80px;
+        padding: 10px;
+        border: 1px solid black;
+        border-radius: 2px;
+        font-size: 15px;
+        margin-left: 10px;
+      }
+      .bt_wrap a:first-child {
+        margin-left: 0;
+      }
+      .bt_wrap a.on {
+        background: black;
+        color: white;
+      }
+      .board_list {
+        width: 100%;
+        border-top: 2px solid #000;
+      }
+      .board_list > div {
+        border-bottom: 1px solid #ddd;
+        font-size: 0px;
+      }
+      .board_list > div.top {
+        border-bottom: 1px solid #999;
+      }
+      .board_list > div:last-child {
+        border-bottom: 1px solid #000;
+      }
+      .board_list > div > div {
+        display: inline-block;
+        text-align: center;
+        padding: 15px 0px;
+        font-size: 15px;
+      }
+      .board_list > div.top > div {
+        font-weight: 600;
+      }
+
+      .board_list .num {
+        width: 10%;
+      }
+      .board_list .title {
+        width: 60%;
+        text-align: left;
+      }
+      .board_list .top .title {
+        text-align: center;
+      }
+      .board_list .writer {
+        width: 10%;
+      }
+      .board_list .date {
+        width: 10%;
+      }
+      .board_list .time {
+        width: 10%;
+      }
+      .board_page {
+        margin-top: 30px;
+        text-align: center;
+        font-size: 0;
+      }
+      .board_page a {
+        display: inline-block;
+        width: 32px;
+        height: 32px;
+        box-sizing: border-box;
+        vertical-align: middle;
+        border: 1px solid #ddd;
+        border-left: 0;
+        line-height: 100%;
+      }
+      .board_page a.bt {
+        padding-top: 10px;
+        font-size: 12px;
+        letter-spacing: -1px;
+      }
+      .board_page a.num {
+        padding-top: 9px;
+        font-size: 14px;
+      }
+      .board_page a.num.on {
+        border-color: #000;
+        background-color: #000;
+        color: #fff;
+      }
+      .board_page a:first-child {
+        border-left: 1px solid #ddd;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="modal hidden">
+      <div class="md_overlay"></div>
+      <div class="md_content">
+        <button class="md_close_btn">X</button>
+        <form class="review-form" id="review-form">
+          <div class="review-box">
+            <div class="review-name">
+              작성자:
+              <input
+                type="text"
+                name="nickName"
+                id="nickName"
+                placeholder="작성자"
+                maxlength="10"
+                autocomplete="false"
+              /><br /><br />
+              비밀번호:
+              <input
+                type="password"
+                name="pwd"
+                id="pwd"
+                placeholder="비밀번호"
+                maxlength="13"
+                autocomplete="false"
+              /><br />
+            </div>
+            <div class="review-textarea">
+              <textarea
+                name="review"
+                id="review"
+                cols="50"
+                rows="10"
+                placeholder="리뷰는 1000자 이내로 입력해 주시길 바랍니다."
+              ></textarea>
+            </div>
+            <p class="text-count">(0/1000)</p>
+            <button type="submit" id="submit">등록</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <main>
+      <div class="board_wrap">
+        <div class="board_title">
+          <strong>영화리뷰</strong>
+          <p>영화리뷰 페이지 입니다.</p>
+        </div>
+        <div class="board_list_wrap">
+          <div class="board_list">
+            <div class="top">
+              <div class="num">번호</div>
+              <div class="title">리뷰</div>
+              <div class="writer">작성자</div>
+              <div class="date">작성일</div>
+              <div class="time">시간</div>
+            </div>
+          </div>
+          <div class="board_page">
+            <a href="" class="bt first"><<</a>
+            <a href="" class="bt prev"><</a>
+            <a href="" class="num on">1</a>
+            <a href="" class="num">2</a>
+            <a href="" class="num">3</a>
+            <a href="" class="num">4</a>
+            <a href="" class="num">5</a>
+            <a href="" class="bt next">></a>
+            <a href="" class="bt last">>></a>
+          </div>
+          <div class="bt_wrap">
+            <button onclick="location.href='../index.html'">
+              영화목록보기
+            </button>
+            <button id="open-modal">리뷰등록</button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+
+  <script>
+    // 모달창 코드
+    const openButton = document.getElementById("open-modal");
+    const modal = document.querySelector(".modal");
+    const overlay = modal.querySelector(".md_overlay");
+    const closeButton = modal.querySelector(".md_close_btn");
+    //동작함수
+    const openModal = () => {
+      modal.classList.remove("hidden");
+    };
+    const closeModal = () => {
+      modal.classList.add("hidden");
+    };
+    //클릭 이벤트
+    openButton.addEventListener("click", openModal);
+    closeButton.addEventListener("click", closeModal);
+
+    // 리뷰 리스트 코드
+    window.onload = function () {
+      let movieId;
+      let count = 1;
+      const searchParams = new URLSearchParams(location.search);
+      for (const param of searchParams) {
+        movieId = param[1];
+      }
+      const reviewList = document.querySelector("#review-list");
+      const boardList = document.querySelector(".board_list");
+      let arr = [];
+      let list_id;
+      for (let i = 0; i < localStorage.length; i++) {
+        let storage = JSON.parse(localStorage.getItem(i));
+        list_id = storage.movieId;
+        if (movieId === list_id) {
+          arr.push(storage);
+        }
+      }
+      console.log("arr", arr);
+      arr.map((list) => {
+        console.log("list", list);
+        let temp_html = ` <div>
+                            <div class="num">${count}</div>
+                            <div class="title"><a href="review.html">${list.review}</a></div>
+                            <div class="writer">${list.nickName}</div>
+                            <div class="date">${list.date}</div>
+                            <div class="time">${list.time}</div>
+                          </div>`;
+        boardList.insertAdjacentHTML("beforeend", temp_html);
+        count++;
+      });
+
+      // 리뷰 등록 글자 확인 코드
+      const textArea = document.querySelector("#review");
+      textArea.onkeyup = function () {
+        const textCount = textArea.value.length;
+        const p = document.querySelector(".text-count");
+        p.innerText = "(" + textCount + "/1000)";
+      };
+
+      // 작성자, 비밀번호, 리뷰 - localStorage 저장 코드
+      const form = document.querySelector("#review-form");
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const id = movieId;
+        const nickName = document.querySelector("#nickName").value;
+        const pwd = Number(document.querySelector("#pwd").value);
+        const review = document.querySelector("#review").value;
+        let today = new Date();
+        let date = today.toLocaleDateString();
+        let time = today.toLocaleTimeString();
+        let obj = {
+          movieId: id,
+          nickName: nickName,
+          pwd: pwd,
+          review: review,
+          date: date,
+          time: time,
+        };
+        localStorage.setItem(localStorage.length, JSON.stringify(obj));
+        location.reload();
+        alert("작성완료!");
+      });
+    };
+  </script>
+</html>

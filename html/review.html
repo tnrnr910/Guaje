@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>리뷰상세페이지</title>
+    <style>
+      ul,
+      li {
+        list-style: none;
+      }
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      .board_wrap {
+        width: 1000px;
+        margin: 100px auto;
+      }
+      .board_title {
+        margin-bottom: 30px;
+      }
+
+      .board_title strong {
+        font-size: 30px;
+      }
+      .board_title p {
+        margin-top: 10px;
+        font-size: 15px;
+      }
+      .bt_wrap {
+        margin-top: 30px;
+        text-align: center;
+        font-size: 0;
+      }
+      .bt_wrap a {
+        display: inline-block;
+        min-width: 80px;
+        padding: 10px;
+        border: 1px solid black;
+        border-radius: 2px;
+        font-size: 15px;
+        margin-left: 10px;
+      }
+      .bt_wrap a:first-child {
+        margin-left: 0;
+      }
+      .bt_wrap a.on {
+        background: black;
+        color: white;
+      }
+      .board_view {
+        width: 100%;
+        border-top: 2px solid #000;
+      }
+      .board_view .title {
+        padding: 20px 15px;
+        border-bottom: 1px dashed #ddd;
+        font-size: 18px;
+      }
+      .board_view .info {
+        padding: 15px;
+        border-bottom: 1px solid #999;
+      }
+      .board_view .info dl {
+        position: relative;
+        display: inline-block;
+        padding: 0 20px;
+      }
+
+      .board_view .info dl:first-child{
+        padding-left: 0;
+      }
+      .board_view .info dt,
+      .board_view .info dd {
+        display: inline-block;
+        font-size: 13px;
+      }
+      .board_view .info dl::before{
+        content: "";
+        position: absolute;
+        top: 5px;
+        left: 0;
+        display: block;
+        width: 1px;
+        height: 13px;
+        background:#ddd;
+      }
+      .board_view .info dl:first-child::before{
+        display: none;
+      }
+      .board_view .info dl dd{
+        margin-left: 10px;
+        color: #777;
+      }
+      .board_view .cont{
+        padding: 15px;
+        border-bottom: 1px solid #000;
+        line-height: 160%;
+        font-size: 18px;
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="board_wrap">
+      <div class="board_title">
+        <strong>리뷰 상세페이지</strong>
+        <p>영화리뷰 상세 페이지 입니다.</p>
+      </div>
+      <div class="board_view_wrap">
+        <div class="board_view">
+          
+          <div class="info">
+            <dl>
+              <dt>번호</dt>
+              <dd>1</dd>
+            </dl>
+            <dl>
+              <dt>글쓴이</dt>
+              <dd>김진수</dd>
+            </dl>
+            <dl>
+              <dt>작성일</dt>
+              <dd>2021.1.16</dd>
+            </dl>
+            <dl>
+              <dt>조회</dt>
+              <dd>33</dd>
+            </dl>
+          </div>
+
+          <div class="cont">
+            글 내용이 들어갑니다<br />
+            글 내용이 들어갑니다<br />
+            글 내용이 들어갑니다<br />
+            글 내용이 들어갑니다<br />
+            글 내용이 들어갑니다<br />
+            글 내용이 들어갑니다<br />
+            글 내용이 들어갑니다<br />
+            글 내용이 들어갑니다
+          </div>
+        </div>
+        <div class="bt_wrap">
+          <a href="subPage.html" class="on">목록</a>
+          <a href="#">수정</a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

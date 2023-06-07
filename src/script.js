@@ -5,15 +5,22 @@ const cardList = document.querySelector(".card-list"); // 카드 리스트 요�
 // 영화 검색 input에 포커스
 searchInput.focus();
 
+// form 태그 새로고침 방지
+const form = document.querySelector("#search-form");
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+  handleSearch(searchInput.value);
+  });
+  
 // 영화 검색 이벤트 핸들러
 const handleSearch = (event) => {
-  event.preventDefault(); // 폼 제출 이벤트의 기본 동작 방지
   const searchText = searchInput.value.toLowerCase(); // 입력값 소문자로 변환
   const movieCards = document.querySelectorAll(".movie-card"); // 모든 영화 카드 요소 가져오기
 
   // 각 영화 카드에 대해 검색어와 일치하는 제목이 있는지 확인하여 표시 여부 결정
   movieCards.forEach((card) => {
     const title = card.querySelector(".movie-title").textContent.toLowerCase(); // 각 카드의 제목 가져오기
+
     if (title.includes(searchText)) {
       card.style.display = "block"; // 일치하는 검색어가 있으면 카드를 표시
     } else {
@@ -42,7 +49,6 @@ const fetchMovieData = async () => {
 // 영화 카드 생성
 const createMovieCards = async () => {
   const movieData = await fetchMovieData(); // 영화 데이터 가져오기
-
   const movieCardsHTML = movieData
     .map(
       (movie) => `
@@ -63,11 +69,11 @@ const createMovieCards = async () => {
     // 각 영화 카드에 클릭 이벤트 리스너 등록
     card.addEventListener("click", () => {
       const movieId = card.getAttribute("id"); // 클릭된 카드의 ID 속성값 가져오기
-      alert(`영화 ID: ${movieId}`); // 알림창으로 영화 ID 출력
+      location.href = "./html/subPage.html?id="+movieId
+      // alert(`영화 ID: ${movieId}`); // 알림창으로 영화 ID 출력
     });
   });
 };
-
 // 영화 카드 생성 및 이벤트 핸들러 등록
 createMovieCards(); // 페이지 로드 시 영화 카드 생성
-searchInput.addEventListener("input", handleSearch); // 검색 input에 입력 이벤트 리스너 등록
+
