@@ -1,0 +1,57 @@
+.go-main {
+  display: flex;
+}
+
+.movie {
+  margin-top: 50px;
+
+  /* border: 10px solid burlywood; */
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.movie-img {
+  display: flex;
+  width: 30%;
+}
+
+.movie-img > img {
+  width: 250px;
+  height: 350px;
+  margin: auto 50px auto 500px;
+  border-radius: 10px;
+}
+
+.not-img1 {
+  margin: 50px 500px auto 200px;
+}
+
+.movie-title {
+  margin-right: 30px;
+  font-size: x-large;
+  font-weight: bold;
+}
+
+.original-title {
+  margin-bottom: 30px;
+}
+
+.release-date {
+  float: left;
+  margin: 10px 50px 10px auto;
+}
+
+.vote-average {
+  margin: 40px auto 10px auto;
+}
+
+.runtime {
+  margin: auto 89px 30px auto;
+  float: left;
+}
+
+.vote-count {
+  margin: auto auto 30px auto;
+}
