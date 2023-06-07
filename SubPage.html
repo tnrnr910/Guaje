@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DIFLICHA</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="./subPage.js" type="module"></script>
+    <style>
+      .go-main {
+        float: left;
+      }
+
+      .movie {
+        margin-top: 50px;
+
+        border: 10px solid burlywood;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .movie-img {
+        display: flex;
+        width: 30%;
+      }
+
+      .movie-img > img {
+        width: 330px;
+        height: 450px;
+      }
+
+      .not-img {
+        font-size: xx-large;
+        width: 10%;
+      }
+
+      .movie-title {
+        margin-bottom: 50px;
+      }
+
+      .release-date {
+        margin-bottom: 50px;
+      }
+
+      .overview {
+        margin-bottom: 50px;
+      }
+
+      .vote-average {
+        margin-bottom: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <button class="go-main">메인</button>
+      <h1 class="diflicha">DIFLICHA</h1>
+    </header>
+    <div class="movie">
+      <div class="movie-img">
+        <img
+          src="https://search.pstatic.net/common?type=o&size=174x242&quality=85&direct=true&src=https%3A%2F%2Fs.pstatic.net%2Fmovie.phinf%2F20230329_142%2F1680055399492ipxkq_JPEG%2Fmovie_image.jpg%3Ftype%3Dw640_2"
+        />
+      </div>
+      <div class="not-img">
+        <div class="movie-title">영화제목</div>
+        <div class="release-date">개봉일</div>
+        <div class="overview">줄거리</div>
+        <div class="vote-average">평점</div>
+      </div>
+    </div>
+  </body>
+</html>

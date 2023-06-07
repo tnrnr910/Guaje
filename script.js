@@ -63,7 +63,8 @@ const createMovieCards = async () => {
     // 각 영화 카드에 클릭 이벤트 리스너 등록
     card.addEventListener("click", () => {
       const movieId = card.getAttribute("id"); // 클릭된 카드의 ID 속성값 가져오기
-      alert(`영화 ID: ${movieId}`); // 알림창으로 영화 ID 출력
+      location.href = "./subPage.html?id=" + movieId; // 해당 영화 상세페이지로 이동
+      // alert(`영화 ID: ${movieId}`); // 알림창으로 영화 ID 출력
     });
   });
 };
