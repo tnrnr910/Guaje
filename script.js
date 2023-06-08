@@ -21,6 +21,8 @@ const handleSearch = (event) => {
     }
   });
 };
+ 
+//
 
 // 영화 데이터 가져오기
 const fetchMovieData = async () => {
