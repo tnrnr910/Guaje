@@ -1,8 +1,7 @@
 const searchParams = new URLSearchParams(location.search);
-// console.log(searchParams.get("id"));
-
+searchParams;
 const movieId = searchParams.get("id");
-
+// 영화 상세정보 가져오는 API
 const getMovies = async () => {
   const options = {
     method: "GET",
@@ -14,13 +13,12 @@ const getMovies = async () => {
   };
 
   fetch(
-    `https://api.themoviedb.org/3/movie/${movieId}?language=ko-KR&page=1`,
+    `https://api.themoviedb.org/3/movie/${movieId}?language=ko-KR&page=1`, // movieId와 일치하는 영화정보 가져오기
     options
   )
     .then((response) => response.json())
     .then((response) => {
       const movie = response;
-      // const movie = Object.entries(response);
 
       let image = "https://image.tmdb.org/t/p/w500/" + movie.poster_path;
       let title = movie.title;
@@ -40,7 +38,7 @@ const getMovies = async () => {
                             src="${image}"
                           />
                         </div>
-                        <div class="not-img1">
+                        <div class="content">
                           <div class="movie-title">${title}</div>
                           <div class="original-title">${originalTitle}</div>                          
                           <div class="release-date">${releaseDate}</div>
@@ -51,9 +49,6 @@ const getMovies = async () => {
                         </div>`;
 
       document.getElementById("movie").innerHTML = temp_html;
-
-      // let element = document.querySelector("#movie"); // DOM 제어
-      // element.insertAdjacentHTML("beforeend", temp_html);
     })
     .catch((err) => console.error(err));
 };
