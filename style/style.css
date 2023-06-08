@@ -1,62 +1,52 @@
 @import "/style/reset.css";
 /* 전체 body */
 body {
-  background-color: #F6F9FC;
+  background-color: #f6f9fc;
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  width: 100%;
 }
 /* 헤더 */
 header {
   background-color: #000;
   padding: 10px;
   text-align: center;
-  height: 85px;
+  height: 100px;
 }
 /* 헤더 전체 */
 .logoimg {
   display: flex;
-  justify-content: space-around;
   position: sticky;
   top: 0;
 }
-
-
-
 /* 헤더의 로고 이미지 */
 header img {
   width: 200px;
   position: relative;
   top: 20px;
-  left: 40px;
-  transition: scale 0.4s;
-}
-header img:hover{
-scale: 1.2;
+  margin-right: 20px;
 }
 /* 검색 폼 */
 .search {
   text-align: center;
   background-color: #000;
-  margin:20px 30px 0 0;
+  margin: 25px 5px 0 auto;
 }
 /* 검색 입력 창 */
 .search input[type="text"] {
   background: rgba(255, 255, 255, 0.1);
   padding: 6px;
-  margin-left: 150px;
   margin-right: 10px;
   border: 1px solid #fff;
+  width: 330px;
   height: 35px;
   font-size: 20px;
   color: white;
-  width: 15vw;
 }
 /* 검색 버튼 */
 #search-btn {
   padding: 7px 17px;
-  background: #D21414;
+  background: rgb(229, 9, 20);
   color: #fff;
   outline: none;
   border: none;
@@ -71,26 +61,24 @@ scale: 1.2;
   background-color: #000;
   height: 50px;
   display: flex;
-  justify-content: space-between;
-  margin-right: 250px;
   position: relative;
-  top: 30px;
+  top: 35px;
   font-size: 25px;
+  gap: 15px;
 }
 /* 네비게이션 링크 스타일 */
 .navigation a {
   color: #fff;
   text-decoration: none;
-  padding: 0 10px 0 10px;
+  padding: 0 5px 0 5px;
   height: 25px;
   border-left: 1px solid #fff;
-  margin-left: 30px;
   transition: scale 0.4s;
 }
-.navigation a:hover{
+.navigation a:hover {
   scale: 1.2;
-  color: #D21414;
-  border-left: 1px solid #D21414;
+  color: #d21414;
+  border-left: 1px solid #d21414;
 }
 /* 카드 리스트 */
 .card-list {
@@ -99,9 +87,6 @@ scale: 1.2;
   justify-content: center;
   background-color: #141414;
 }
-/* 현재 해결해야할 것 : 제목 폰트랑 크기 그지같음, 슬라이더 적용,
-ID값 말고 마우스 호버 시 모달창, 검색창에 입력한 거 새로고침 해도 안 사라짐 */
-/* 영화 카드 */
 .movie-card {
   width: 180px;
   border-radius: 5px;
@@ -114,6 +99,9 @@ ID값 말고 마우스 호버 시 모달창, 검색창에 입력한 거 새로�
   align-items: center;
   text-align: center;
   cursor: pointer;
+}
+.movie-card:hover {
+  transform: scale(1.2); /* 영화 카드 호버 시 확대 */
 }
 /* 영화 포스터 이미지 */
 .movie-card img {
@@ -136,4 +124,63 @@ ID값 말고 마우스 호버 시 모달창, 검색창에 입력한 거 새로�
   padding: 10px;
   border-radius: 5px;
   cursor: pointer;
+}
+
+@media screen and (max-width: 1235px) {
+  header img {
+    width: 150px;
+    top: 30px;
+    margin-right: 15px;
+  }
+  /* 검색 폼 */
+  .search {
+    margin: 22px 5px 0 auto;
+  }
+  .search input[type="text"] {
+    width: 250px;
+    height: 30px;
+    font-size: 15px;
+  }
+  /* 검색 버튼 */
+  #search-btn {
+    height: 45px;
+    width: 70px;
+  }
+  .navigation {
+    font-size: 20px;
+    gap: 10px;
+  }
+}
+
+@media screen and (max-width: 986px) {
+  header img {
+    width: 150px;
+    top: 30px;
+    margin-right: 15px;
+  }
+  /* 검색 폼 */
+  .search {
+    margin: 25px 5px 0 auto;
+  }
+  .search input[type="text"] {
+    width: 200px;
+    height: 20px;
+    font-size: 12px;
+    margin-right: 5px;
+  }
+  /* 검색 버튼 */
+  #search-btn {
+    height: 35px;
+    width: 60px;
+    font-size: 13px;
+  }
+  .navigation {
+    font-size: 15px;
+    top: 38px;
+    gap: 7px;
+  }
+
+  .navigation a {
+    height: 15px;
+  }
 }

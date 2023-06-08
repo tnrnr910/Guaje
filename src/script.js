@@ -36,7 +36,7 @@ const createMovieCards = async (api) => {
   } else if (api === "upcoming") {
     apiUrl = "https://api.themoviedb.org/3/movie/upcoming?language=ko-KR";
   }
-  const totalPages = 5; // 가져올 API 총 페이지 수
+  const totalPages = 3; // 가져올 API 총 페이지 수
   let movieCardsHTML = ""; // 영화 카드 HTML 초기화
   for (let page = 1; page <= totalPages; page++) {
     // 각 페이지별로 영화 데이터 가져오기
@@ -63,12 +63,12 @@ const createMovieCards = async (api) => {
   cardList.innerHTML = movieCardsHTML; // 카드 리스트에 생성한 HTML 삽입
   const movieCards = document.querySelectorAll(".movie-card"); // 모든 영화 카드 요소 가져오기
   movieCards.forEach((card) => {
-   // 각 영화 카드에 클릭 이벤트 리스너 등록
-   card.addEventListener("click", () => {
-    const movieId = card.getAttribute("id"); // 클릭된 카드의 ID 속성값 가져오기
-    location.href = "./html/subPage.html?id="+movieId
-    // alert(`영화 ID: ${movieId}`); // 알림창으로 영화 ID 출력
-  });
+    // 각 영화 카드에 클릭 이벤트 리스너 등록
+    card.addEventListener("click", () => {
+      const movieId = card.getAttribute("id"); // 클릭된 카드의 ID 속성값 가져오기
+      location.href = "./html/subPage.html?id=" + movieId;
+      // alert(`영화 ID: ${movieId}`); // 알림창으로 영화 ID 출력
+    });
   });
 };
 // 초기 페이지 로드 시 topRated API로 영화 카드 생성
@@ -88,4 +88,3 @@ form.addEventListener("submit", (event) => {
   event.preventDefault();
   handleSearch(searchInput.value);
 });
-
