@@ -1,55 +1,181 @@
-/* 메인 버튼 */
-.go-main {
+.container {
+  color: white;
   display: flex;
+  width: 800px;
+  margin: 100px auto 100px auto;
 }
-/* 영화 상세 */
-.movie {
-  margin-top: 50px;
+
+.image {
+  margin-right: 50px;
+}
+
+.image > img {
+  width: 280px;
+}
+
+.main-content {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  margin-top: 30px;
 }
-/* 영화 이미지 박스 */
-.movie-img {
-  display: flex;
-  width: 30%;
-}
-/* 영화 포스터 */
-.movie-img > img {
-  width: 250px;
-  height: 350px;
-  margin: auto 50px auto 500px;
-  border-radius: 10px;
-}
-/* 이미지 우측 내용 */
+
 .content {
-  margin: 50px 500px auto 200px;
-}
-/* 영화 제목 */
-.movie-title {
-  margin-right: 30px;
-  font-size: x-large;
-  font-weight: bold;
-}
-/* 소제목 */
-.original-title {
+  display: flex;
   margin-bottom: 30px;
 }
-/* 개봉 */
-.release-date {
-  float: left;
-  margin: 10px 50px 10px auto;
+
+.movie-title {
+  font-size: xx-large;
+  font-weight: bold;
+  margin-bottom: 5px;
 }
-/* 평점 */
-.vote-average {
-  margin: 40px auto 10px auto;
+
+.content2 {
+  display: flex;
 }
-/* 러닝타임 */
-.runtime {
-  margin: auto 89px 30px auto;
-  float: left;
+
+/* 모달창 content */
+body {
+  background-color: #141414;
 }
-/* 투표수 */
-.vote-count {
-  margin: auto auto 30px auto;
+.review-textarea {
+  margin-top: 50px;
+}
+#nickName {
+  width: 150px;
+  height: 30px;
+  border-radius: 5px;
+  margin-left: 15px;
+}
+#pwd {
+  width: 65px;
+  height: 30px;
+  border-radius: 5px;
+}
+.text-count {
+  color: gray;
+  padding: 0px 0px 0px 12px;
+  position: relative;
+  bottom: 30px;
+  font-size: 20px;
+}
+#review {
+  font-size: 20px;
+}
+
+/* 모달창 구현 css*/
+button {
+  background-color: black;
+  color: white;
+  padding: 15px 25px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+.md_overlay {
+  background-color: rgba(0, 0, 0, 0.6);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+.md_content {
+  position: relative;
+  padding: 70px 100px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 6px 6px rgba(0, 0, 0, 0.2);
+  background-color: #ddd;
+}
+.md_close_btn {
+  padding: 10px 15px;
+  float: right;
+}
+.md_close_btn:hover {
+  cursor: pointer;
+}
+.hidden {
+  display: none;
+}
+.review-box button {
+  float: right;
+}
+
+/* 댓글 css */
+@media (max-width: 1000px) {
+  .board_wrap {
+    width: 100%;
+    min-width: 320px;
+    padding: 0 30px;
+    box-sizing: border-box;
+  }
+}
+ul,
+li {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+.board_wrap {
+  width: 1000px;
+  margin: 100px auto;
+  color: #ddd;
+}
+.bt_wrap {
+  margin-top: 30px;
+  text-align: center;
+  font-size: 0;
+  display: flex;
+  justify-content: space-between;
+}
+.modify-btn,
+.delete-btn {
+  padding: 10px 10px 10px 10px;
+}
+.list-div {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0 auto;
+  padding: 30px;
+  border-radius: 5px;
+  box-shadow: 5px 5px 10px 0px #e50914;
+}
+.review-text {
+  margin: 20px 0 50px 0;
+  font-size: 30px;
+}
+.list-div .num {
+  margin-right: 30px;
+}
+
+/* 추천 비추천 css */
+.like {
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  transition: scale 0.3s;
+}
+.like:hover {
+  scale: 1.2;
+}
+.hate {
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  transition: scale 0.3s;
+}
+.hate:hover {
+  scale: 1.2;
 }

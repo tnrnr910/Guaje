@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../style/reset.css" />
+    <link rel="stylesheet" href="../style/subPage.css" />
+
+    <link href="../image/d_logo.png" rel="shortcut icon" type="image/x-icon" />
+    <title>영화 상세 정보페이지</title>
+    <style></style>
+  </head>
+  <body>
+    <header>
+      <!-- <div class="movie" id="movie">
+        <div class="movie-img">
+          <img src=""/>
+        </div>
+        <div class="content">
+          <div class="movie-title">영화제목</div>
+          <div class="original-title">영어제목</div>
+          <div class="release-date">개봉일</div>
+          <div class=overview">줄거리</p>
+          <div class="runtime">러닝타임</div>
+          <div class="vote-count">투표수</div>
+          <div class="vote-average">평점</div>                      
+        </div>
+      </div> -->
+      <div class="container" id="movie">
+        <div class="image">
+          <img
+            src="https://search1.daumcdn.net/thumb/C146x211.q70/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fmovie%2F5605612b56736f1b4dedc8953b29b5d04c32c053"
+          />
+        </div>
+        <div class="main-content">
+          <div class="content">
+            <div class="title">
+              <h3 class="movie-title">제목</h3>
+              <p class="original-title">소제목</p>
+            </div>
+          </div>
+          <div class="content2">
+            <p class="release-date">개봉</p>
+            <p class="vote-average">평점</p>
+            <p></p>
+          </div>
+          <div class="content3">
+            <p class="runtime">러닝타임</p>
+            <p class="vote-count">투표수</p>
+          </div>
+          <div class="overview">줄거리</div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <div class="board_wrap">
+        <div class="board_list_wrap">
+          <div class="review-div"></div>
+          <div class="bt_wrap">
+            <button onclick="location.href='../index.html'">
+              영화목록보기
+            </button>
+            <button id="open-modal">리뷰등록</button>
+          </div>
+        </div>
+      </div>
+    </main>
+    <div class="modal hidden">
+      <div class="md_overlay"></div>
+      <div class="md_content">
+        <button class="md_close_btn">X</button>
+        <form class="review-form" id="review-form">
+          <div class="review-box">
+            <div class="review-name">
+              작성자:
+              <input
+                type="text"
+                name="nickName"
+                id="nickName"
+                placeholder="작성자"
+                maxlength="10"
+                autocomplete="false"
+              /><br /><br />
+              비밀번호:
+              <input
+                type="password"
+                name="pwd"
+                id="pwd"
+                placeholder="비밀번호"
+                maxlength="13"
+                autocomplete="false"
+              /><br />
+            </div>
+            <div class="review-textarea">
+              <textarea
+                name="review"
+                id="review"
+                cols="50"
+                rows="10"
+                maxlength="1000"
+                placeholder="리뷰는 1000자 이내로 입력해 주시길 바랍니다."
+              ></textarea>
+            </div>
+            <p class="text-count">(0/1000)</p>
+            <button type="submit" id="submit">등록</button>
+            <div class="check-recommend">
+              <img class="like" src="../image/recommend.png" alt="" />
+              <img class="hate" src="../image/non_recommend.png" alt="" />
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+  <script src="../src/subPage.js"></script>
+</html>

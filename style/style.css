@@ -3,6 +3,7 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
+  background-color: #141414;
 }
 /* header */
 header {
@@ -35,6 +36,7 @@ header {
   border-radius: 5px;
   margin: 10px;
   padding: 10px;
+  cursor: pointer;
 }
 /* 영화 포스터 이미지 */
 .movie-card img {
