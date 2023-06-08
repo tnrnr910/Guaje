@@ -64,10 +64,10 @@ header img {
   height: 50px;
   display: flex;
   justify-content: space-between;
-  margin-right: 600px;
+  margin-right: 250px;
   position: relative;
   top: 30px;
-  font-size: 30px;
+  font-size: 25px;
 }
 /* 네비게이션 링크 스타일 */
 .navigation a {
