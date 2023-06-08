@@ -5,13 +5,14 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
+  width: 100%;
 }
 /* 헤더 */
 header {
   background-color: #000;
   padding: 10px;
   text-align: center;
-  height: 100px;
+  height: 85px;
 }
 /* 헤더 전체 */
 .logoimg {
@@ -20,12 +21,19 @@ header {
   position: sticky;
   top: 0;
 }
+
+
+
 /* 헤더의 로고 이미지 */
 header img {
   width: 200px;
   position: relative;
   top: 20px;
   left: 40px;
+  transition: scale 0.4s;
+}
+header img:hover{
+scale: 1.2;
 }
 /* 검색 폼 */
 .search {
@@ -40,15 +48,15 @@ header img {
   margin-left: 150px;
   margin-right: 10px;
   border: 1px solid #fff;
-  width: 330px;
   height: 35px;
   font-size: 20px;
   color: white;
+  width: 15vw;
 }
 /* 검색 버튼 */
 #search-btn {
   padding: 7px 17px;
-  background: rgb(229, 9, 20);
+  background: #D21414;
   color: #fff;
   outline: none;
   border: none;
