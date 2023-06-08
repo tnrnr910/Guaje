@@ -2,28 +2,55 @@
 const searchInput = document.querySelector("#search-input"); // 검색 input 요소
 const cardList = document.querySelector(".card-list"); // 카드 리스트 요소
 const sortBtn = document.getElementById("sort-btn");
-const changeHeader = document.querySelector(".change-header");
+document.getElementById("welcome-setinterval-start").addEventListener("click", changeColor);   // setinterval
+document.getElementById("welcome-setinterval-stop").addEventListener("click", stopTextColor);   // setinterval
+let movieCards = document.querySelectorAll(".movie-card");
+// let movieCards ;로 써도됨 
+let nIntervId;  // setinterval 색상변화
+const count = document.querySelector(".count-btn");
+console.log('movieCards=', movieCards, Array.from(movieCards), 'spread', [...movieCards])
 
 // local dom 요소 
 
 const form = document.querySelector(".form-local-data"),
-  localInput = form.querySelector("#form-id"),
+  // localInput = form.querySelector("#form-id"),
   greeting = document.querySelector(".js-greeting"),
   button = document.querySelector(".local-delete");
+// ,보단 각각선언이 나음 
 
 // 영화 검색 input에 포커스
 searchInput.focus();
 
 // valid 유효성검사
 const vaildInput = ['!', '@', '#', '$', '*'];
-
+// 배열이라는것 생각하기 
+// invalid가 나음
+// includes
 
 // setInterval change header부분 
-changeHeader.addEventListener('click', () => {
-  setInterval(() => console.log(Math.floor(Math.random() * 10)), 2000);
-  
-});
+// countBtn.setInterval(() => (Math.floor(Math.random() * 10)), 2000);
 
+// });
+
+////
+function changeColor() {
+  // check if an interval has already been set up
+  if (!nIntervId) {
+    nIntervId = setInterval(flashText, 1000);
+  }
+}
+
+function flashText() {
+  const oElem = document.getElementById("header");
+  oElem.className = oElem.className === "welcome-setinterval-start" ? "welcome-setinterval-stop" : "welcome-setinterval-start";
+}
+
+function stopTextColor() {
+  clearInterval(nIntervId);
+  // release our intervalID from the variable
+  nIntervId = null;
+}
+// 
 
 
 
@@ -41,8 +68,10 @@ const handleSearch = (event) => {
     } else {
       card.style.display = "none"; // 일치하는 검색어가 없으면 카드를 숨김
     }
-    movieCards.forEach((card) => {
-      if (searchText.includes(vaildInput))
+    vaildInput.forEach((input) => {
+
+      if (searchText.includes(input))
+        // 배열이 아니라 string 값이여함 / every
         card.style.color = 'red'; // 일치하는 검색어가 있으면 카드를 표시
     });
 
@@ -83,10 +112,29 @@ const createMovieCards = async () => {
     `
     )
     .join(""); // 영화 데이터를 반복하여 카드 HTML 문자열 생성
-  setTimeout(() => cardList.innerHTML = movieCardsHTML, 1500);; // 카드 리스트에 생성한 HTML 삽입 1.5초뒤 
+  setTimeout(() => {
+    cardList.innerHTML = movieCardsHTML;
+    // 세미콜론 안써도 적용되어서 나옴 , 세미콜론 쓰는것을 추천 
+    // 윗부분이 실행되어야 queryselectorAll 사용가능 
+    console.log('sortBtn=', sortBtn);
+    sortBtn.addEventListener('click', () => {
+      console.log('moviecards=', movieCards);
+      [...movieCards].sort(function (a, b) {
+        console.log('a=', a);
+        console.log('b=', b);
+        // 객체 -> string -> sort 
 
 
-  const movieCards = document.querySelectorAll(".movie-card"); // 모든 영화 카드 요소 가져오기
+        return a - b;
+      });
+
+    })
+  }, 1000); // 카드 리스트에 생성한 HTML 삽입 1.5초뒤 
+  // 정렬메소드시작
+
+
+  // const movieCards = document.querySelectorAll(".movie-card"); // 모든 영화 카드 요소 가져오기
+  movieCards = document.querySelectorAll(".movie-card");    //전역에 선언해서 변수만선언 
   movieCards.forEach((card) => {
     // 각 영화 카드에 클릭 이벤트 리스너 등록
     card.addEventListener("click", () => {
@@ -96,12 +144,7 @@ const createMovieCards = async () => {
   });
 };
 
-// 정렬메소드시작
-sortBtn.addEventListener('click', () => {
-  card.sort(function (a, b) {
-    return a - b;
-  });
-});
+
 // 영화 카드 생성 및 이벤트 핸들러 등록
 createMovieCards(); // 페이지 로드 시 영화 카드 생성
 searchInput.addEventListener("input", handleSearch); // 검색 input에 입력 이벤트 리스너 등록
@@ -123,14 +166,14 @@ function hiddenAndGreeting(name, value) {
   // const data = new FormData(form);
   // for (const [name, value] of data) {
   // console.log(name, ":", value)
-  const data = new FormData(form);
-  for (const [name, value] of data) {
-    // console.log(name, ":", value)
-    // localStorage.setItem(LOCAL_DATA, localInput.value);
-    // hiddenAndGreeting(localInput.value);
-    greeting.innerText = `Hi!${name}${name}${name}`;
-    localInput.value = "";
-  }
+  // const data = new FormData(form);
+  // for (const [name, value] of data) {
+  // console.log(name, ":", value)
+  // localStorage.setItem(LOCAL_DATA, localInput.value);
+  // hiddenAndGreeting(localInput.value);
+  // greeting.innerText = `Hi!${name}${name}${name}`;
+  // localInput.value = "";
+  // }
   // }
 }
 
@@ -148,39 +191,39 @@ function onSubmit(e) {
   const data = new FormData(form);
   for (const [name, value] of data) {
     console.log(name, ":", value)
-    localStorage.setItem(LOCAL_DATA, localInput.value);
-    hiddenAndGreeting(localInput.value);
+    // localStorage.setItem(LOCAL_DATA, localInput.value);
+    // hiddenAndGreeting(localInput.value);
 
-    localInput.value = "";
+    // localInput.value = "";
   }
 }
 
 //input태그 보이게 설정, 인사 텍스트와 버튼은 숨김.
 //form에 submit 이벤트 설정
-function askForNickName() {
-  form.style.display = "block";
-  greeting.style.display = "none";
-  button.style.display = "none";
-  form.addEventListener("submit", onSubmit); //form에 submit이벤트 추가
-}
+// function askForNickName() {
+//   form.style.display = "block";
+//   greeting.style.display = "none";
+//   button.style.display = "none";
+//   form.addEventListener("submit", onSubmit); //form에 submit이벤트 추가
+// }
 
 // 브라우저의 localStorage에 데이터가 있을때와 없을때
 //구분하여 실행 시켜줄 함수.
-function loaded() {
-  const data = localStorage.getItem(LOCAL_DATA);
-  if (data === null) { // 데이터가 없을 시
-    askForNickName();
-  } else {//데이터가 이미 있을 시
-    hiddenAndGreeting(data);
-  }
-}
+// function loaded() {
+//   const data = localStorage.getItem(LOCAL_DATA);
+//   if (data === null) { // 데이터가 없을 시
+//     askForNickName();
+//   } else {//데이터가 이미 있을 시
+//     hiddenAndGreeting(data);
+//   }
+// }
 
 //처음 실행할 init함수
-function init() {
-  loaded();
-}
+// function init() {
+//   loaded();
+// }
 
-init();
+// init();
 
 
 
