@@ -27,20 +27,20 @@ form.addEventListener("submit", (event) => {
   const textarea = document.querySelector("#review").value;
   //password > Number 타입으로 변환
   const pwd = Number(password);
-  if(nickName===''){
+  if (nickName === "") {
     document.querySelector("#nickName").focus();
     return alert("작성자를 한 글자 이상 입력해 주세요!");
-  }else if(nickName.length<3){
+  } else if (nickName.length < 3) {
     document.querySelector("#nickName").focus();
     return alert("작성자는 3글자 이상 입력해야 합니다!");
   }
 
   if (password.length < 4) {
-    document.querySelector("#pwd").focus()
+    document.querySelector("#pwd").focus();
     return alert("패스워드가 너무 짧습니다. 4자리 이상 입력해주세요!");
   }
-  if(textarea===''){
-    document.querySelector("#review").focus()
+  if (textarea === "") {
+    document.querySelector("#review").focus();
     return alert("리뷰는 한 글자 이상 입력해야 합니다!");
   }
   const review = document.querySelector("#review").value;
@@ -72,20 +72,30 @@ function reviewList() {
   reviewList = reviewList.filter((review) => {
     return review.movieId === movieId;
   });
-  reviewDiv.innerHTML = reviewList.map((review) => {
-    return `<div class="list-div">
-               <div class="writer">${review.nickName}</div>
-               <div class="date">${review.date}</div>
-               <div class="time">${review.time}</div>
-               <div class="recommend">추천</div>
-               <div class="star">⭐⭐⭐⭐⭐</div>
-             <div class="list-btn">
-               <button onclick="reviewModify('${review.pwd}','${review.nickName}')" class="modify-btn">수정</button>
-               <button onclick="reviewDelete('${review.pwd}','${review.nickName}')" class="delete-btn">삭제</button>
-             </div>
+  reviewDiv.innerHTML = reviewList
+    .map((review) => {
+      return `<div class="review-text-outerBox">
+              <div class="review-header"> 
+                <div class="list-div">
+                  <div class="writer">${review.nickName}</div>
+                  <div class="date">${review.date}</div>
+                  <div class="time">${review.time}</div>
+                  
+                  <div class="star">⭐⭐⭐⭐⭐</div>                
+                </div>
+                <div class="list-btn">
+                  <button onclick="reviewModify('${review.pwd}','${review.nickName}')" class="modify-btn"></button>
+                  <button onclick="reviewDelete('${review.pwd}','${review.nickName}')" class="delete-btn"></button>
+                </div>
+              </div>
+              <div class="review-text-innerBox">
+                <div class="review-text">${review.review}</div>
+              </div>
             </div>
-            <div class="review-text">🔊 ${review.review}</div>`;
-  });
+            `;
+      // line81 : <div class="recommend">추천</div> : 삭제
+    })
+    .join("");
 }
 
 // textarea 글자 수 확인
@@ -182,15 +192,17 @@ const getMovies = async () => {
       let image = "https://image.tmdb.org/t/p/w500/" + movie.poster_path;
       let title = movie.title;
       let runtime =
-        "<font color='gray'>러닝타임&emsp;</font>" + movie.runtime + "분";
+        "<font color='gray'>러닝타임&emsp;|&emsp;</font>" +
+        movie.runtime +
+        "분";
       let releaseDate =
-        "<font color='gray'>개봉&emsp;&emsp;&emsp;</font>" + movie.release_date;
+        "<font color='gray'>개봉&emsp;|&emsp;</font>" + movie.release_date;
       let voteAverage =
-        "<font color='gray'>평점&emsp;&emsp;</font>" + movie.vote_average;
+        "<font color='gray'>평점&emsp;|&emsp;</font>" + movie.vote_average;
       let overview = movie.overview;
       let originalTitle = movie.original_title;
       let voteCount =
-        "<font color='gray'>투표수&emsp;</font>" + movie.vote_count;
+        "<font color='gray'>투표수&emsp;|&emsp;</font>" + movie.vote_count;
 
       let temp_html = `<div class="movie-img">
                           <img
@@ -212,4 +224,3 @@ const getMovies = async () => {
     .catch((err) => console.error(err));
 };
 getMovies();
-
