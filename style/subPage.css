@@ -1,57 +1,55 @@
+/* 메인 버튼 */
 .go-main {
   display: flex;
 }
-
+/* 영화 상세 */
 .movie {
   margin-top: 50px;
-
-  /* border: 10px solid burlywood; */
-
   display: flex;
   align-items: center;
   justify-content: center;
 }
-
+/* 영화 이미지 박스 */
 .movie-img {
   display: flex;
   width: 30%;
 }
-
+/* 영화 포스터 */
 .movie-img > img {
   width: 250px;
   height: 350px;
   margin: auto 50px auto 500px;
   border-radius: 10px;
 }
-
+/* 이미지 우측 내용 */
 .content {
   margin: 50px 500px auto 200px;
 }
-
+/* 영화 제목 */
 .movie-title {
   margin-right: 30px;
   font-size: x-large;
   font-weight: bold;
 }
-
+/* 소제목 */
 .original-title {
   margin-bottom: 30px;
 }
-
+/* 개봉 */
 .release-date {
   float: left;
   margin: 10px 50px 10px auto;
 }
-
+/* 평점 */
 .vote-average {
   margin: 40px auto 10px auto;
 }
-
+/* 러닝타임 */
 .runtime {
   margin: auto 89px 30px auto;
   float: left;
 }
-
+/* 투표수 */
 .vote-count {
   margin: auto auto 30px auto;
 }
