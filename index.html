@@ -4,36 +4,40 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <!-- 스타일 연결 -->
+    <link rel="icon" href="/image/d_logo.png" />
+    <!-- 스타일 시트 연결 -->
     <link rel="stylesheet" href="../style/reset.css" />
     <link rel="stylesheet" href="../style/style.css" />
-    <link href="../image/d_logo.png" rel="shortcut icon" type="image/x-icon" />
-    <title>영화 상세 정보페이지</title>
+    <!-- 타이틀 -->
+    <title>DIFLICHA</title>
   </head>
   <body>
     <!-- 헤더 -->
-    <header>
-      <h1>디플릭챠</h1>
+    <header class="logoimg">
+      <figure><a href="/"><img src="/image/mainlogo.png" alt="DIFLICHA"/></a></figure>
+      <!-- 네비게이션 바 -->
+      <nav class="navigation">
+        <a href="#" data-api="topRated">명작</a>
+        <a href="#" data-api="nowPlaying">현재 상영작</a>
+        <a href="#" data-api="popular">최신 인기작</a>
+        <a href="#" data-api="upcoming">상영 예정작</a>
+      </nav>
+      <!-- 검색 폼 -->
+      <form class="search" id="search-form">
+        <input
+          type="text"
+          id="search-input"
+          placeholder="영화 제목을 입력해주세요."
+        />
+        <button type="submit" id="search-btn">검색</button>
+      </form>
     </header>
-
-    <!-- 검색 폼 -->
-    <form class="search" id="search-form">
-      <input
-        type="text"
-        id="search-input"
-        placeholder="영화 제목을 입력해주세요."
-      />
-      <button type="submit" id="search-btn">검색</button>
-    </form>
-
     <!-- 영화 카드 -->
     <section class="card-list"></section>
-
     <!-- 페이지 상단 이동 -->
     <div id="upbtn">
       <div style="cursor: pointer" onclick="window.scrollTo(0,0);">TOP</div>
     </div>
-
     <!-- 자바스크립트 파일 연결 -->
     <script src="/src/script.js"></script>
   </body>

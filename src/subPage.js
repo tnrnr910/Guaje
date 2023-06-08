@@ -27,20 +27,19 @@ form.addEventListener("submit", (event) => {
   const textarea = document.querySelector("#review").value;
   //password > Number 타입으로 변환
   const pwd = Number(password);
-  if(nickName===''){
+  if (nickName === "") {
     document.querySelector("#nickName").focus();
     return alert("작성자를 한 글자 이상 입력해 주세요!");
-  }else if(nickName.length<3){
+  } else if (nickName.length < 3) {
     document.querySelector("#nickName").focus();
     return alert("작성자는 3글자 이상 입력해야 합니다!");
   }
-
   if (password.length < 4) {
-    document.querySelector("#pwd").focus()
+    document.querySelector("#pwd").focus();
     return alert("패스워드가 너무 짧습니다. 4자리 이상 입력해주세요!");
   }
-  if(textarea===''){
-    document.querySelector("#review").focus()
+  if (textarea === "") {
+    document.querySelector("#review").focus();
     return alert("리뷰는 한 글자 이상 입력해야 합니다!");
   }
   const review = document.querySelector("#review").value;
@@ -53,7 +52,7 @@ form.addEventListener("submit", (event) => {
     pwd: pwd,
     review: review,
     date: date,
-    time: time,
+    time: time
   };
   localStorage.setItem(nickName, JSON.stringify(obj));
   window.location.reload();
@@ -73,6 +72,7 @@ function reviewList() {
     return review.movieId === movieId;
   });
   reviewDiv.innerHTML = reviewList.map((review) => {
+    console.log("review", review);
     return `<div class="list-div">
                <div class="writer">${review.nickName}</div>
                <div class="date">${review.date}</div>
@@ -84,8 +84,8 @@ function reviewList() {
                <button onclick="reviewDelete('${review.pwd}','${review.nickName}')" class="delete-btn">삭제</button>
              </div>
             </div>
-            <div class="review-text">🔊 ${review.review}</div>`;
-  });
+            <div class="review-text"><img class="review-img" src="../image/review.png"> ${review.review}</div>`;
+  }).join("");
 }
 
 // textarea 글자 수 확인
@@ -116,12 +116,11 @@ function reviewModify(pwd, nickName) {
     alert("패스워드가 틀렸습니다! 다시 입력하세요");
   }
 }
+
 // 리뷰 삭제 기능
 function reviewDelete(pwd, nickName) {
   const inputPwd = Number(prompt("비밀번호를 입력하세요."));
-  console.log("pwd", pwd);
-  console.log("inputPwd", inputPwd);
-  console.log("nickName", nickName);
+
   if (pwd == inputPwd) {
     let result = confirm("정말로 삭제하시겠습니까?");
     if (result == true) {
@@ -212,4 +211,3 @@ const getMovies = async () => {
     .catch((err) => console.error(err));
 };
 getMovies();
-

@@ -93,16 +93,13 @@ a {
   color: inherit;
 }
 .board_wrap {
-  width: 1000px;
+  width: 60%;
   margin: 100px auto;
   color: #ddd;
 }
 .bt_wrap {
   margin-top: 30px;
-  text-align: center;
-  font-size: 0;
-  display: flex;
-  justify-content: space-between;
+  text-align: end;
 }
 .modify-btn,
 .delete-btn {
@@ -115,16 +112,20 @@ a {
   margin: 0 auto;
   padding: 30px;
   border-radius: 5px;
-  box-shadow: 5px 5px 10px 0px #e50914;
+  box-shadow: 5px 5px 10px 0px black;
+  background-color:darkred;
+  font-size: 25px;
 }
 .review-text {
   margin: 20px 0 50px 0;
-  font-size: 30px;
+  font-size: 25px;
 }
 .list-div .num{
  margin-right: 30px;
 }
-
+.review-img{
+  width: 30px;
+}
 /* 추천 비추천 css */
 .like{
   width: 50px;
@@ -170,7 +171,8 @@ a {
 }
 /* 이미지 우측 내용 */
 .content {
-  margin: 50px 500px auto 200px;
+  margin: 30px 500px auto 100px;
+  color: white;
 }
 /* 영화 제목 */
 .movie-title {
