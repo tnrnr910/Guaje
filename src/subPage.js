@@ -71,21 +71,31 @@ function reviewList() {
   reviewList = reviewList.filter((review) => {
     return review.movieId === movieId;
   });
-  reviewDiv.innerHTML = reviewList.map((review) => {
-    console.log("review", review);
-    return `<div class="list-div">
-               <div class="writer">${review.nickName}</div>
-               <div class="date">${review.date}</div>
-               <div class="time">${review.time}</div>
-               <div class="recommend">추천</div>
-               <div class="star">⭐⭐⭐⭐⭐</div>
-             <div class="list-btn">
-               <button onclick="reviewModify('${review.pwd}','${review.nickName}')" class="modify-btn">수정</button>
-               <button onclick="reviewDelete('${review.pwd}','${review.nickName}')" class="delete-btn">삭제</button>
-             </div>
+
+  reviewDiv.innerHTML = reviewList
+    .map((review) => {
+      return `<div class="review-text-outerBox">
+              <div class="review-header"> 
+                <div class="list-div">
+                  <div class="writer">${review.nickName}</div>
+                  <div class="date">${review.date}</div>
+                  <div class="time">${review.time}</div>
+                  
+                  <div class="star">⭐⭐⭐⭐⭐</div>                
+                </div>
+                <div class="list-btn">
+                  <button onclick="reviewModify('${review.pwd}','${review.nickName}')" class="modify-btn"></button>
+                  <button onclick="reviewDelete('${review.pwd}','${review.nickName}')" class="delete-btn"></button>
+                </div>
+              </div>
+              <div class="review-text-innerBox">
+                <div class="review-text">${review.review}</div>
+              </div>
             </div>
-            <div class="review-text"><img class="review-img" src="../image/review.png"> ${review.review}</div>`;
-  }).join("");
+            `;
+      // line81 : <div class="recommend">추천</div> : 삭제
+    })
+    .join("");
 }
 
 // textarea 글자 수 확인
@@ -181,15 +191,17 @@ const getMovies = async () => {
       let image = "https://image.tmdb.org/t/p/w500/" + movie.poster_path;
       let title = movie.title;
       let runtime =
-        "<font color='gray'>러닝타임&emsp;</font>" + movie.runtime + "분";
+        "<font color='gray'>러닝타임&emsp;|&emsp;</font>" +
+        movie.runtime +
+        "분";
       let releaseDate =
-        "<font color='gray'>개봉&emsp;&emsp;&emsp;</font>" + movie.release_date;
+        "<font color='gray'>개봉&emsp;|&emsp;</font>" + movie.release_date;
       let voteAverage =
-        "<font color='gray'>평점&emsp;&emsp;</font>" + movie.vote_average;
+        "<font color='gray'>평점&emsp;|&emsp;</font>" + movie.vote_average;
       let overview = movie.overview;
       let originalTitle = movie.original_title;
       let voteCount =
-        "<font color='gray'>투표수&emsp;</font>" + movie.vote_count;
+        "<font color='gray'>투표수&emsp;|&emsp;</font>" + movie.vote_count;
 
       let temp_html = `<div class="movie-img">
                           <img

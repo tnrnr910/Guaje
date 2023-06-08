@@ -1,7 +1,33 @@
-
 /* 모달창 content */
 body {
   background-color: #141414;
+  margin: 100px auto;
+}
+/* 모든 버튼 일괄 적용 (특정 버튼 따로 적용 필요) */
+button {
+  background-color: transparent;
+  color: #ffffff;
+  padding: 10px 20px 10px 20px;
+  border: 1px solid #ffffff;
+  font-size: 1em;
+}
+/* 모든 버튼에 hover */
+button:hover {
+  cursor: pointer;
+}
+.btn-area {
+  display: flex;
+  padding: 50px;
+}
+.review-button,
+.movie-list-btn {
+  display: block;
+  margin: 20px;
+  margin-top: 50px;
+  margin-left: 150px;
+}
+.movie-list-btn {
+  margin-right: 15px;
 }
 .review-textarea {
   margin-top: 50px;
@@ -24,16 +50,21 @@ body {
   bottom: 30px;
   font-size: 20px;
 }
-#review{
+#review {
   font-size: 20px;
 }
 
 /* 모달창 구현 css*/
-button {
+/* 버튼 전체 적용되서 모달 안 버튼으로 세부 적용 처리 */
+input {
+  width: 100%;
+  box-sizing: border-box;
+}
+.md_content > button {
   background-color: black;
   color: white;
   padding: 15px 25px;
-  border-radius: 10px;
+  /* border-radius: 10px; */
   cursor: pointer;
 }
 .modal {
@@ -55,31 +86,37 @@ button {
 }
 .md_content {
   position: relative;
-  padding: 70px 100px;
-  background-color: white;
+  padding: 100px 70px;
+  background-color: #141414;
   border-radius: 10px;
+  border: 1px solid #ffffff;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 6px 6px rgba(0, 0, 0, 0.2);
-  background-color:#ddd;
+  background-color: #141414;
+  color: #ffffff;
 }
 .md_close_btn {
-  padding: 10px 15px;
   float: right;
-}
-.md_close_btn:hover {
+  border: none;
   cursor: pointer;
 }
+/* .md_close_btn:hover {
+  cursor: pointer;
+} */
 .hidden {
   display: none;
 }
-.review-box button {
+.review-box > button {
   float: right;
+}
+.submit_btn {
+  width: 120px;
 }
 
 /* 댓글 css */
 @media (max-width: 1000px) {
   .board_wrap {
     width: 100%;
-    min-width: 320px;
+    min-width: 200px;
     padding: 0 30px;
     box-sizing: border-box;
   }
@@ -93,56 +130,97 @@ a {
   color: inherit;
 }
 .board_wrap {
-  width: 60%;
-  margin: 100px auto;
+  padding-left: 12%;
+  padding-right: 12%;
+  margin: 5%;
   color: #ddd;
 }
-.bt_wrap {
-  margin-top: 30px;
-  text-align: end;
+.movie-list-btn {
+  float: right;
+}
+
+.review-text-outerBox {
+  /* grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); */
+  padding: 10px;
+  border: 1px solid #ffffff;
+  background-color: #141414;
+  box-shadow: 0px 3px 10px 0px #000000;
+  margin-bottom: 20px;
+  margin-left: 15px;
+  margin-right: 15px;
+  /* height: 250px; */
+}
+/* 수정, 삭제 버튼을 같은 라인 우측 끝으로 위치하기 위해 */
+.review-header {
+  display: flex;
+  /* margin: auto; */
+  background-color: #000000;
+  /* border-bottom: 1px solid #ffffff; */
 }
 .modify-btn,
 .delete-btn {
-  padding: 10px 10px 10px 10px;
+  margin-top: 20px;
+  margin-right: 10px;
 }
+.modify-btn {
+  /* Layout Properties */
+  width: 25px;
+  height: 25px;
+  /* UI Properties */
+  background: transparent url("../image/Icon material-edit.png") 0% 0% no-repeat
+    padding-box;
+  opacity: 1;
+  /* 자동으로 들어가는 버튼 보더 지우기 */
+  border-width: 0;
+}
+.delete-btn {
+  /* Layout Properties */
+  width: 25px;
+  height: 25px;
+  /* UI Properties */
+  background: transparent url("../image/Icon material-delete.png") 0% 0%
+    no-repeat padding-box;
+  opacity: 1;
+  /* 자동으로 들어가는 버튼 보더 지우기 */
+  border-width: 0;
+}
+
 .list-div {
   display: flex;
-  justify-content: space-around;
-  align-items: center;
-  margin: 0 auto;
-  padding: 30px;
-  border-radius: 5px;
-  box-shadow: 5px 5px 10px 0px black;
-  background-color:darkred;
-  font-size: 25px;
+  padding: 5px;
+  margin: auto;
+}
+.list-div > div {
+  padding: 20px;
+  margin: auto;
+}
+.list-btn {
+  margin-right: 0;
+}
+.review-text-innerBox {
+  width: 80%;
+  height: 80%;
+  /* background-color: #141414; */
+  padding: 50px;
+  margin: auto;
 }
 .review-text {
   margin: 20px 0 50px 0;
-  font-size: 25px;
+  font-size: 20px;
+  text-align: center;
 }
-.list-div .num{
- margin-right: 30px;
-}
-.review-img{
-  width: 30px;
-}
+
 /* 추천 비추천 css */
-.like{
-  width: 50px;
-  height: 50px;
+.like,
+.hate {
+  width: 30px;
+  height: 30px;
   cursor: pointer;
   transition: scale 0.3s;
+  margin: 5px;
 }
-.like:hover{
-  scale: 1.2;
-}
-.hate{
-  width: 50px;
-  height: 50px;
-  cursor: pointer;
-  transition: scale 0.3s;
-}
-.hate:hover{
+.like:hover,
+.hate:hover {
   scale: 1.2;
 }
 
@@ -152,53 +230,71 @@ a {
 }
 /* 영화 상세 */
 .movie {
-  margin-top: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  color: white;
+  margin-top: 80px;
+  margin-left: 20%;
+  margin-right: 20%;
 }
 /* 영화 이미지 박스 */
 .movie-img {
-  display: flex;
-  width: 30%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 10px;
 }
 /* 영화 포스터 */
 .movie-img > img {
-  width: 250px;
-  height: 350px;
-  margin: auto 50px auto 500px;
   border-radius: 10px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
 }
-/* 이미지 우측 내용 */
+/* 이미지 우측 내용 --> 하단으로 조정*/
 .content {
-  margin: 30px 500px auto 100px;
-  color: white;
+  display: inline;
+  text-align: center;
+  margin: 50px;
+  line-height: 25px;
 }
 /* 영화 제목 */
 .movie-title {
-  margin-right: 30px;
-  font-size: x-large;
+  margin-top: 20px;
+  font-size: 1.8em;
   font-weight: bold;
 }
 /* 소제목 */
 .original-title {
+  font-size: 1.2em;
+  margin-top: 10px;
   margin-bottom: 30px;
 }
-/* 개봉 */
-.release-date {
+.release-date,
+.vote-average,
+.runtime,
+.vote-count {
+  margin-bottom: 5px;
+  font-size: 1.2em;
+}
+
+.overview {
+  margin-top: 40px;
+  padding-left: 8%;
+  padding-right: 8%;
+  font-size: 1.2em;
+  line-height: 32px;
+}
+/* .release-date {
   float: left;
   margin: 10px 50px 10px auto;
 }
-/* 평점 */
 .vote-average {
   margin: 40px auto 10px auto;
 }
-/* 러닝타임 */
 .runtime {
   margin: auto 89px 30px auto;
   float: left;
 }
-/* 투표수 */
 .vote-count {
   margin: auto auto 30px auto;
-}
+} */
