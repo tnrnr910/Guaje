@@ -12,6 +12,11 @@ searchForm.addEventListener("submit", handleSearch);
 function handleSearch(event) {
   event.preventDefault(); // 폼 제출 이벤트의 기본 동작 방지
   const searchText = searchInput.value.toLowerCase(); // 입력값 소문자로 변환
+  if (searchText.trim() === "") {
+    // 입력값이 없을 경우 알림창 띄우기
+    alert("검색어를 입력해주세요.");
+    return;
+  }
   const movieCards = document.querySelectorAll(".movie-card"); // 모든 영화 카드 요소 가져오기
   // 각 영화 카드에 대해 검색어와 일치하는 제목이 있는지 확인하여 표시 여부 결정
   movieCards.forEach((card) => {
