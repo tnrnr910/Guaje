@@ -25,8 +25,21 @@ form.addEventListener("submit", (event) => {
   const nickName = document.querySelector("#nickName").value;
   const password = document.querySelector("#pwd").value;
   const textarea = document.querySelector("#review").value;
+  const likeValue = document.querySelector(".like").alt;
+  const hateValue = document.querySelector(".hate").alt;
+  console.log("likeValue",likeValue)
+  let like=0;
   //password > Number 타입으로 변환
   const pwd = Number(password);
+  if (likeValue === "추천" && hateValue === "비추천") {
+    return alert("추천여부를 선택해 주세요!");
+  }
+  if(likeValue === "체크_추천"){
+    like = 1;
+  }else{
+    like = 0;
+  }
+
   if (nickName === "") {
     document.querySelector("#nickName").focus();
     return alert("작성자를 한 글자 이상 입력해 주세요!");
@@ -52,7 +65,8 @@ form.addEventListener("submit", (event) => {
     pwd: pwd,
     review: review,
     date: date,
-    time: time
+    time: time,
+    like: like
   };
   localStorage.setItem(nickName, JSON.stringify(obj));
   window.location.reload();
@@ -61,6 +75,7 @@ form.addEventListener("submit", (event) => {
 
 // 리뷰 리스트
 function reviewList() {
+  let likeSrc;
   const reviewDiv = document.querySelector(".review-div");
   let reviewList = [];
   for (let i = 0; i < window.localStorage.length; i++) {
@@ -71,9 +86,13 @@ function reviewList() {
   reviewList = reviewList.filter((review) => {
     return review.movieId === movieId;
   });
-
   reviewDiv.innerHTML = reviewList
     .map((review) => {
+      if(review.like===1){
+        likeSrc = "../image/check_recommend.png"
+      }else{
+        likeSrc = "../image/check_non_recommend.png"
+      }
       return `<div class="review-text-outerBox">
               <div class="review-header"> 
                 <div class="list-div">
@@ -81,10 +100,10 @@ function reviewList() {
                   <div class="date">${review.date}</div>
                   <div class="time">${review.time}</div>
                   
-                  <div class="star">⭐⭐⭐⭐⭐</div>                
+                  <div class="star"><img class="like-success" src="${likeSrc}"/></div>                
                 </div>
                 <div class="list-btn">
-                  <button onclick="reviewModify('${review.pwd}','${review.nickName}')" class="modify-btn"></button>
+                  <button onclick="reviewModify('${review.pwd}','${review.nickName}','${review.like}')" class="modify-btn"></button>
                   <button onclick="reviewDelete('${review.pwd}','${review.nickName}')" class="delete-btn"></button>
                 </div>
               </div>
@@ -93,7 +112,6 @@ function reviewList() {
               </div>
             </div>
             `;
-      // line81 : <div class="recommend">추천</div> : 삭제
     })
     .join("");
 }
@@ -107,7 +125,7 @@ textArea.onkeyup = function () {
 };
 
 // 리뷰 수정 기능
-function reviewModify(pwd, nickName) {
+function reviewModify(pwd, nickName,like) {
   const value = JSON.parse(localStorage.getItem(nickName));
   const inputPwd = Number(prompt("비밀번호를 입력하세요."));
   if (pwd == inputPwd) {
@@ -115,7 +133,18 @@ function reviewModify(pwd, nickName) {
     if (modifyReview === "") {
       alert("공백은 넣을 수 없습니다!");
     } else if (modifyReview !== null) {
-      value.review = modifyReview;
+      let changeLike = confirm("추천여부도 변경하시겠습니까?");
+      console.log(changeLike);
+      if(changeLike===true){
+        console.log("변경하겠습니다.")
+        if(like==1){
+          like=0
+        }else{
+          like=1
+        }
+        value.like = like;
+        value.review = modifyReview;
+      }
       localStorage.setItem(nickName, JSON.stringify(value));
       alert("수정이 완료 됐습니다!");
       location.reload();
@@ -152,20 +181,19 @@ const uncheckHate = "../image/non_recommend.png";
 const checkLike = "../image/check_recommend.png";
 const checkHate = "../image/check_non_recommend.png";
 like.addEventListener("click", (event) => {
-  console.log(like.src);
   if ((like.src = uncheckLike)) {
-    console.log(like.src);
     like.src = checkLike;
-  } else {
-    console.log(like.src);
-    like.src = uncheckLike;
+    hate.src = uncheckHate;
+    like.setAttribute("alt", "체크_추천");
+    hate.setAttribute("alt", "비추천");
   }
 });
 hate.addEventListener("click", (event) => {
-  if (hate.src == uncheckHate) {
+  if ((hate.src = uncheckHate)) {
     hate.src = checkHate;
-  } else if (like.src !== uncheckHate) {
-    hate.src = uncheckHate;
+    like.src = uncheckLike;
+    hate.setAttribute("alt", "체크_비추천");
+    like.setAttribute("alt", "추천");
   }
 });
 

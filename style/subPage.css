@@ -11,20 +11,21 @@ button {
   border: 1px solid #ffffff;
   font-size: 1em;
 }
+
 /* 모든 버튼에 hover */
 button:hover {
   cursor: pointer;
 }
 .btn-area {
   display: flex;
-  padding: 50px;
+  margin-left: 33%;
 }
 .review-button,
 .movie-list-btn {
   display: block;
   margin: 20px;
   margin-top: 50px;
-  margin-left: 150px;
+  margin-left: 125px;
 }
 .movie-list-btn {
   margin-right: 15px;
@@ -99,9 +100,7 @@ input {
   border: none;
   cursor: pointer;
 }
-/* .md_close_btn:hover {
-  cursor: pointer;
-} */
+
 .hidden {
   display: none;
 }
@@ -212,7 +211,8 @@ a {
 
 /* 추천 비추천 css */
 .like,
-.hate {
+.hate,
+.like-success{
   width: 30px;
   height: 30px;
   cursor: pointer;
@@ -220,9 +220,10 @@ a {
   margin: 5px;
 }
 .like:hover,
-.hate:hover {
+.hate:hover{
   scale: 1.2;
 }
+
 
 /* 메인 버튼 */
 .go-main {
