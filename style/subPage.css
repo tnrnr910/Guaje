@@ -18,7 +18,8 @@ button:hover {
 }
 .btn-area {
   display: flex;
-  margin-left: 33%;
+  margin: 0 auto;
+  justify-content: center;
 }
 .review-button,
 .movie-list-btn {
@@ -284,17 +285,3 @@ a {
   font-size: 1.2em;
   line-height: 32px;
 }
-/* .release-date {
-  float: left;
-  margin: 10px 50px 10px auto;
-}
-.vote-average {
-  margin: 40px auto 10px auto;
-}
-.runtime {
-  margin: auto 89px 30px auto;
-  float: left;
-}
-.vote-count {
-  margin: auto auto 30px auto;
-} */

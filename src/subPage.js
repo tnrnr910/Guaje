@@ -27,16 +27,16 @@ form.addEventListener("submit", (event) => {
   const textarea = document.querySelector("#review").value;
   const likeValue = document.querySelector(".like").alt;
   const hateValue = document.querySelector(".hate").alt;
-  console.log("likeValue",likeValue)
-  let like=0;
+  console.log("likeValue", likeValue);
+  let like = 0;
   //password > Number 타입으로 변환
   const pwd = Number(password);
   if (likeValue === "추천" && hateValue === "비추천") {
     return alert("추천여부를 선택해 주세요!");
   }
-  if(likeValue === "체크_추천"){
+  if (likeValue === "체크_추천") {
     like = 1;
-  }else{
+  } else {
     like = 0;
   }
 
@@ -66,7 +66,7 @@ form.addEventListener("submit", (event) => {
     review: review,
     date: date,
     time: time,
-    like: like
+    like: like,
   };
   localStorage.setItem(nickName, JSON.stringify(obj));
   window.location.reload();
@@ -88,10 +88,10 @@ function reviewList() {
   });
   reviewDiv.innerHTML = reviewList
     .map((review) => {
-      if(review.like===1){
-        likeSrc = "../image/check_recommend.png"
-      }else{
-        likeSrc = "../image/check_non_recommend.png"
+      if (review.like === 1) {
+        likeSrc = "../image/check_recommend.png";
+      } else {
+        likeSrc = "../image/check_non_recommend.png";
       }
       return `<div class="review-text-outerBox">
               <div class="review-header"> 
@@ -125,7 +125,7 @@ textArea.onkeyup = function () {
 };
 
 // 리뷰 수정 기능
-function reviewModify(pwd, nickName,like) {
+function reviewModify(pwd, nickName, like) {
   const value = JSON.parse(localStorage.getItem(nickName));
   const inputPwd = Number(prompt("비밀번호를 입력하세요."));
   if (pwd == inputPwd) {
@@ -135,12 +135,12 @@ function reviewModify(pwd, nickName,like) {
     } else if (modifyReview !== null) {
       let changeLike = confirm("추천여부도 변경하시겠습니까?");
       console.log(changeLike);
-      if(changeLike===true){
-        console.log("변경하겠습니다.")
-        if(like==1){
-          like=0
-        }else{
-          like=1
+      if (changeLike === true) {
+        console.log("변경하겠습니다.");
+        if (like == 1) {
+          like = 0;
+        } else {
+          like = 1;
         }
         value.like = like;
         value.review = modifyReview;
