@@ -240,7 +240,7 @@ const getMovies = async () => {
                           <div class="movie-title">${title}</div>
                           <div class="original-title">${originalTitle}</div>                          
                           <div class="release-date">${releaseDate}</div>
-                          <div class="vote-average">${voteAverage}</div>
+                          <div class="vote-average ${getColor(movie.vote_average)}">${voteAverage}</div>
                           <div class="runtime">${runtime}</div>
                           <div class="vote-count">${voteCount}</div>
                           <div class="overview">${overview}</div>                           
@@ -251,3 +251,14 @@ const getMovies = async () => {
     .catch((err) => console.error(err));
 };
 getMovies();
+
+// 평점 관련 색상
+function getColor(vote) {
+  if (vote >= 8) {
+  return 'green'
+  } else if (vote >= 5) {
+  return "orange"
+  } else {
+  return 'red'
+  }
+  }

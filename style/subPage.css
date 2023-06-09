@@ -18,14 +18,15 @@ button:hover {
 }
 .btn-area {
   display: flex;
-  margin-left: 33%;
+  margin: 0 auto;
+  justify-content: center;
 }
 .review-button,
 .movie-list-btn {
   display: block;
   margin: 20px;
   margin-top: 50px;
-  margin-left: 125px;
+  margin-right: 80px;
 }
 .movie-list-btn {
   margin-right: 15px;
@@ -285,17 +286,13 @@ a {
   font-size: 1.2em;
   line-height: 32px;
 }
-/* .release-date {
-  float: left;
-  margin: 10px 50px 10px auto;
-}
-.vote-average {
-  margin: 40px auto 10px auto;
-}
-.runtime {
-  margin: auto 89px 30px auto;
-  float: left;
-}
-.vote-count {
-  margin: auto auto 30px auto;
-} */
+/* 평점 관련 색상 css */
+.orange {
+  color: orange;
+  }
+  .red {
+  color: red;
+  }
+  .green {
+  color: lightgreen;
+  }
