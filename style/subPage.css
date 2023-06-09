@@ -99,7 +99,7 @@ input {
   border: none;
   cursor: pointer;
 }
-/* .md_close_btn:hover {
+/* .md_close_btn:hover {s
   cursor: pointer;
 } */
 .hidden {
@@ -298,3 +298,8 @@ a {
 .vote-count {
   margin: auto auto 30px auto;
 } */
+
+/* 비디오 자동재생 */
+.video {
+  width: 100%;
+}
