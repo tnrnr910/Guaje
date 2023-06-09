@@ -173,7 +173,7 @@ function reviewDelete(pwd, nickName) {
     alert("패스워드가 틀렸습니다! 다시 입력하세요");
   }
 }
-// 추천 비추천 기능(미구현)
+// 추천 비추천 기능
 const like = document.querySelector(".like");
 const hate = document.querySelector(".hate");
 const uncheckLike = "../image/recommend.png";
