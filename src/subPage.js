@@ -27,19 +27,15 @@ form.addEventListener("submit", (event) => {
   const textarea = document.querySelector("#review").value;
   const likeValue = document.querySelector(".like").alt;
   const hateValue = document.querySelector(".hate").alt;
-  console.log("likeValue",likeValue)
-  let like=0;
   //password > Number 타입으로 변환
   const pwd = Number(password);
+  let like=0;
   if (likeValue === "추천" && hateValue === "비추천") {
     return alert("추천여부를 선택해 주세요!");
   }
-  if(likeValue === "체크_추천"){
-    like = 1;
-  }else{
-    like = 0;
-  }
-
+  if(likeValue === "체크_추천") like = 1;
+  else like = 0;
+  
   if (nickName === "") {
     document.querySelector("#nickName").focus();
     return alert("작성자를 한 글자 이상 입력해 주세요!");
@@ -73,6 +69,14 @@ form.addEventListener("submit", (event) => {
   reviewList();
 });
 
+// textarea 글자 수 확인
+const textArea = document.querySelector("#review");
+textArea.onkeyup = function () {
+  const textCount = textArea.value.length;
+  const p = document.querySelector(".text-count");
+  p.innerText = "(" + textCount + "/1000)";
+};
+
 // 리뷰 리스트
 function reviewList() {
   let likeSrc;
@@ -100,7 +104,7 @@ function reviewList() {
                   <div class="date">${review.date}</div>
                   <div class="time">${review.time}</div>
                   
-                  <div class="star"><img class="like-success" src="${likeSrc}"/></div>                
+                  <div class="like-icon"><img class="like-success" src="${likeSrc}"/></div>                
                 </div>
                 <div class="list-btn">
                   <button onclick="reviewModify('${review.pwd}','${review.nickName}','${review.like}')" class="modify-btn"></button>
@@ -116,14 +120,6 @@ function reviewList() {
     .join("");
 }
 
-// textarea 글자 수 확인
-const textArea = document.querySelector("#review");
-textArea.onkeyup = function () {
-  const textCount = textArea.value.length;
-  const p = document.querySelector(".text-count");
-  p.innerText = "(" + textCount + "/1000)";
-};
-
 // 리뷰 수정 기능
 function reviewModify(pwd, nickName,like) {
   const value = JSON.parse(localStorage.getItem(nickName));
@@ -134,14 +130,15 @@ function reviewModify(pwd, nickName,like) {
       alert("공백은 넣을 수 없습니다!");
     } else if (modifyReview !== null) {
       let changeLike = confirm("추천여부도 변경하시겠습니까?");
-      console.log(changeLike);
       if(changeLike===true){
-        console.log("변경하겠습니다.")
         if(like==1){
           like=0
         }else{
           like=1
         }
+        value.like = like;
+        value.review = modifyReview;
+      }else{
         value.like = like;
         value.review = modifyReview;
       }
@@ -159,7 +156,6 @@ function reviewModify(pwd, nickName,like) {
 // 리뷰 삭제 기능
 function reviewDelete(pwd, nickName) {
   const inputPwd = Number(prompt("비밀번호를 입력하세요."));
-
   if (pwd == inputPwd) {
     let result = confirm("정말로 삭제하시겠습니까?");
     if (result == true) {
@@ -173,7 +169,7 @@ function reviewDelete(pwd, nickName) {
     alert("패스워드가 틀렸습니다! 다시 입력하세요");
   }
 }
-// 추천 비추천 기능(미구현)
+// 추천 비추천 기능
 const like = document.querySelector(".like");
 const hate = document.querySelector(".hate");
 const uncheckLike = "../image/recommend.png";
@@ -181,19 +177,25 @@ const uncheckHate = "../image/non_recommend.png";
 const checkLike = "../image/check_recommend.png";
 const checkHate = "../image/check_non_recommend.png";
 like.addEventListener("click", (event) => {
-  if ((like.src = uncheckLike)) {
+  if (like.alt ==="추천") {
     like.src = checkLike;
     hate.src = uncheckHate;
     like.setAttribute("alt", "체크_추천");
     hate.setAttribute("alt", "비추천");
+  }else if(like.alt ==="체크_추천"){
+    like.setAttribute("alt", "추천");
+    like.src = uncheckLike;
   }
 });
 hate.addEventListener("click", (event) => {
-  if ((hate.src = uncheckHate)) {
+  if (hate.alt ==="비추천") {
     hate.src = checkHate;
     like.src = uncheckLike;
-    hate.setAttribute("alt", "체크_비추천");
     like.setAttribute("alt", "추천");
+    hate.setAttribute("alt", "체크_비추천");
+  }else if(hate.alt ==="체크_비추천"){
+    hate.setAttribute("alt", "비추천");
+    hate.src = uncheckHate;
   }
 });
 
